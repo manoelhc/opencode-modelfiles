@@ -54,7 +54,19 @@ git clone https://github.com/manoelhc/opencode-modelfiles.git
 cd opencode-modelfiles
 ```
 
-2. Create a model using any of the Modelfiles:
+2. **Quick Start** - Use the build script to create all models with fun names:
+```bash
+./build-models.sh
+```
+
+This will create all 5 models with creative names:
+- `code-wizard-3000` - The mighty 30B coding sorcerer
+- `captain-code` - The fearless 20B coding superhero
+- `dev-ninja` - The stealthy 24B development master
+- `code-buddy` - Your friendly 7B coding companion
+- `pocket-coder` - The tiny but mighty 0.8B code assistant
+
+3. **Manual Creation** - Or create models individually:
 ```bash
 # Example: Create Qwen3 Coder 30B model
 ollama create qwen3-coder-30b -f Modelfile.qwen3-coder-30b
@@ -63,14 +75,18 @@ ollama create qwen3-coder-30b -f Modelfile.qwen3-coder-30b
 ollama create qwen2.5-coder-7b -f Modelfile.qwen2.5-coder-7b
 ```
 
-3. Run the model:
+4. Run a model:
 ```bash
+# Using the fun names from the build script
+ollama run code-wizard-3000
+
+# Or using your custom name
 ollama run qwen3-coder-30b
 ```
 
-4. Use with opencode or your preferred interface:
+5. Use with opencode or your preferred interface:
 ```bash
-# The model is now available for use with opencode
+# The models are now available for use with opencode
 # or any other Ollama-compatible application
 ```
 
