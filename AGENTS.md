@@ -13,7 +13,7 @@ Before adding a new model, ensure you have:
 
 ### 1. Create the Modelfile
 
-Create a new Modelfile named `Modelfile.<model-identifier>` in the repository root.
+Create a new Modelfile named `Modelfile.<model-identifier>` in the `models/` directory.
 
 #### Required Modelfile Components
 
@@ -35,7 +35,7 @@ PARAMETER repeat_penalty 1.1
 PARAMETER stop "<appropriate-stop-token>"
 
 # System prompt optimized for opencode coding assistant
-SYSTEM """You are an expert AI coding assistant with comprehensive knowledge of software development, algorithms, and best practices across multiple programming languages and frameworks.
+SYSTEM """You are an autonomous AI coding agent with comprehensive knowledge of software development, algorithms, and best practices across multiple programming languages and frameworks.
 
 Your capabilities include:
 - Code generation, completion, and refactoring
@@ -70,7 +70,7 @@ TEMPLATE """<appropriate-template-format>"""
 
 - **Maximum VRAM**: Model must fit within 20 GB total VRAM budget (includes model + context)
 - **Recommended quantization**: Q4_K_M or Q6_K for balance between quality and size
-- **Context window**: Use `num_ctx 16384` (standard across all models)
+- **Context window**: Use `num_ctx 16384` (standard across all models for tool support)
 - **GPU utilization**: Set `num_gpu 99` for maximum GPU usage
 - **Threading**: Set `num_thread 8` for optimal CPU threading
 
@@ -118,7 +118,7 @@ Add a new entry to the build script:
 
 ```bash
 # Create <Model Name> - <Brief description>
-create_model "Modelfile.<model-identifier>" \
+create_model "models/Modelfile.<model-identifier>" \
     "<fun-name>" \
     "<Creative description>"
 ```
@@ -144,7 +144,7 @@ Add a comprehensive model entry to the `models` array in `opencode.json`:
   "id": "<fun-name>",
   "name": "<Model Display Name>",
   "description": "<Detailed description with use cases>",
-  "modelfile": "Modelfile.<model-identifier>",
+  "modelfile": "models/Modelfile.<model-identifier>",
   "source": "<full-model-source-path>",
   "parameters": {
     "num_ctx": 16384,
@@ -229,7 +229,7 @@ Add the new model to the "Available Models" section:
 
 ```markdown
 ### <Number>. <Model Name>
-- **File**: `Modelfile.<model-identifier>`
+- **File**: `models/Modelfile.<model-identifier>`
 - **Model**: <full-model-source>
 - **Best for**: <primary-use-cases>
 ```
@@ -279,7 +279,7 @@ After making changes, test:
 
 3. **Model Creation** (if Ollama is available):
    ```bash
-   ollama create <fun-name> -f Modelfile.<model-identifier>
+   ollama create <fun-name> -f models/Modelfile.<model-identifier>
    ```
 
 ## Common Pitfalls to Avoid
@@ -312,10 +312,10 @@ After making changes, test:
 ## Reference Examples
 
 See existing models for reference:
-- `Modelfile.qwen3-coder-30b` - Large model with ChatML template
-- `Modelfile.devstral-small-24b` - Large model with Instruct template
-- `Modelfile.qwen2.5-coder-7b` - Medium model example
-- `Modelfile.qwen3-zero-coder-0.8b` - Ultra-lightweight model example
+- `models/Modelfile.code-wizard-3000` - Large model with ChatML template
+- `models/Modelfile.dev-ninja` - Large model with Instruct template
+- `models/Modelfile.code-buddy` - Medium model example
+- `models/Modelfile.pocket-coder` - Ultra-lightweight model example
 
 ## Questions?
 

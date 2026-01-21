@@ -1,23 +1,22 @@
-# Modelfile for Devstral Small 24B Instruct
+# Modelfile for Qwen3 Coder 30B A3B Instruct
 # Optimized for opencode with AMD Radeon RX 7900 XTX (20 GB)
 
-# Using Q4_K_M quantization for optimal balance between quality and VRAM usage
-FROM hf.co/unsloth/Devstral-Small-2-24B-Instruct-2512-GGUF:Q4_K_M
+# Using GPT-OSS model like captain-code
+FROM gpt-oss:20b
 
 # Context window and performance parameters
-PARAMETER num_ctx 16384
+PARAMETER num_ctx 40960
 PARAMETER num_gpu 99
 PARAMETER num_thread 8
-PARAMETER temperature 0.7
+PARAMETER temperature 0.0
 PARAMETER top_k 40
 PARAMETER top_p 0.95
-PARAMETER repeat_penalty 1.1
-PARAMETER stop "[INST]"
-PARAMETER stop "[/INST]"
-PARAMETER stop "</s>"
-
+#PARAMETER repeat_penalty 1.1
+#PARAMETER stop "<|im_end|>"
+#PARAMETER stop "<|endoftext|>"
+#
 # System prompt optimized for opencode coding assistant
-SYSTEM """You are an expert AI coding assistant with comprehensive knowledge of software development, algorithms, and best practices across multiple programming languages and frameworks.
+SYSTEM """You are an autonomous AI coding agent with comprehensive knowledge of software development, algorithms, and best practices across multiple programming languages and frameworks.
 
 Your capabilities include:
 - Code generation, completion, and refactoring
@@ -42,9 +41,11 @@ When responding:
 - Include relevant documentation and examples
 
 You have access to tools for file operations, code execution, web search, and more. Use them effectively to provide comprehensive assistance."""
-
-# Devstral uses Instruct format with [INST]/[/INST] tags instead of ChatML format
-TEMPLATE """[INST] {{ .System }}
-
-{{ .Prompt }} [/INST]
-"""
+#
+#TEMPLATE """<|im_start|>system
+#{{ .System }}<|im_end|>
+#<|im_start|>user
+#{{ .Prompt }}<|im_end|>
+#<|im_start|>assistant
+#"""
+#

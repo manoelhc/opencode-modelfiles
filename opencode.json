@@ -1,407 +1,73 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
-  "title": "OpenCode Model Configuration",
-  "description": "Configuration file for OpenCode AI coding models with Ollama",
-  "version": "1.0.0",
-  "models": [
-    {
-      "id": "code-wizard-3000",
-      "name": "Code Wizard 3000",
-      "description": "The mighty 30B coding sorcerer - Large-scale code generation and complex refactoring tasks",
-      "modelfile": "Modelfile.qwen3-coder-30b",
-      "source": "hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M",
-      "parameters": {
-        "num_ctx": 16384,
-        "num_gpu": 99,
-        "num_thread": 8,
-        "temperature": 0.7,
-        "top_k": 40,
-        "top_p": 0.95,
-        "repeat_penalty": 1.1
-      },
-      "stop_tokens": [
-        "<|im_end|>",
-        "<|endoftext|>"
-      ],
-      "template_format": "ChatML",
-      "quantization": "Q4_K_M",
-      "size_gb": 16.5,
-      "vram_required_gb": 18,
-      "capabilities": {
-        "tools": true,
-        "reasoning": true,
-        "autonomous": true,
-        "code_generation": true,
-        "code_refactoring": true,
-        "bug_detection": true,
-        "debugging": true,
-        "code_explanation": true,
-        "documentation": true,
-        "architecture_design": true,
-        "performance_optimization": true,
-        "security_analysis": true,
-        "test_generation": true,
-        "api_guidance": true,
-        "cli_assistance": true,
-        "git_operations": true,
-        "file_operations": true,
-        "web_search": false
-      },
-      "best_for": [
-        "Large-scale code generation",
-        "Complex refactoring tasks",
-        "Architecture design",
-        "Multi-file projects"
-      ],
-      "hardware_requirements": {
-        "gpu": "AMD Radeon RX 7900 XTX or equivalent",
-        "vram_gb": 20,
-        "recommended": true
-      }
-    },
-    {
-      "id": "captain-code",
-      "name": "Captain Code",
-      "description": "The fearless 20B coding superhero - General-purpose coding with unrestricted capabilities",
-      "modelfile": "Modelfile.openai-gpt-oss-20b",
-      "source": "hf.co/DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf:OpenAi-GPT-oss-20b-abliterated-uncensored-NEO.Q4_K_M.gguf",
-      "parameters": {
-        "num_ctx": 16384,
-        "num_gpu": 99,
-        "num_thread": 8,
-        "temperature": 0.7,
-        "top_k": 40,
-        "top_p": 0.95,
-        "repeat_penalty": 1.1
-      },
-      "stop_tokens": [
-        "<|im_end|>",
-        "<|endoftext|>",
-        "</s>"
-      ],
-      "template_format": "ChatML",
-      "quantization": "Q4_K_M",
-      "size_gb": 11,
-      "vram_required_gb": 13,
-      "capabilities": {
-        "tools": true,
-        "reasoning": true,
-        "autonomous": true,
-        "code_generation": true,
-        "code_refactoring": true,
-        "bug_detection": true,
-        "debugging": true,
-        "code_explanation": true,
-        "documentation": true,
-        "architecture_design": true,
-        "performance_optimization": true,
-        "security_analysis": true,
-        "test_generation": true,
-        "api_guidance": true,
-        "cli_assistance": true,
-        "git_operations": true,
-        "file_operations": true,
-        "web_search": false,
-        "uncensored": true
-      },
-      "best_for": [
-        "General-purpose coding",
-        "Unrestricted code generation",
-        "Creative solutions",
-        "Experimental features"
-      ],
-      "hardware_requirements": {
-        "gpu": "AMD Radeon RX 7900 XTX or equivalent",
-        "vram_gb": 20,
-        "recommended": true
-      }
-    },
-    {
-      "id": "dev-ninja",
-      "name": "Dev Ninja",
-      "description": "The stealthy 24B development master - Balanced performance and capability for development tasks",
-      "modelfile": "Modelfile.devstral-small-24b",
-      "source": "hf.co/unsloth/Devstral-Small-2-24B-Instruct-2512-GGUF:Q4_K_M",
-      "parameters": {
-        "num_ctx": 16384,
-        "num_gpu": 99,
-        "num_thread": 8,
-        "temperature": 0.7,
-        "top_k": 40,
-        "top_p": 0.95,
-        "repeat_penalty": 1.1
-      },
-      "stop_tokens": [
-        "[INST]",
-        "[/INST]",
-        "</s>"
-      ],
-      "template_format": "Instruct",
-      "quantization": "Q4_K_M",
-      "size_gb": 13.5,
-      "vram_required_gb": 15,
-      "capabilities": {
-        "tools": true,
-        "reasoning": true,
-        "autonomous": true,
-        "code_generation": true,
-        "code_refactoring": true,
-        "bug_detection": true,
-        "debugging": true,
-        "code_explanation": true,
-        "documentation": true,
-        "architecture_design": true,
-        "performance_optimization": true,
-        "security_analysis": true,
-        "test_generation": true,
-        "api_guidance": true,
-        "cli_assistance": true,
-        "git_operations": true,
-        "file_operations": true,
-        "web_search": false
-      },
-      "best_for": [
-        "Balanced development tasks",
-        "Full-stack development",
-        "API development",
-        "Backend services"
-      ],
-      "hardware_requirements": {
-        "gpu": "AMD Radeon RX 7900 XTX or equivalent",
-        "vram_gb": 20,
-        "recommended": true
-      }
-    },
-    {
-      "id": "code-buddy",
-      "name": "Code Buddy",
-      "description": "Your friendly 7B coding companion - Fast code completion and lightweight coding assistance",
-      "modelfile": "Modelfile.qwen2.5-coder-7b",
-      "source": "hf.co/QuantFactory/Qwen2.5-Coder-7B-3x-Instruct-TIES-v1.2-GGUF:Qwen2.5-Coder-7B-3x-Instruct-TIES-v1.2.Q4_K_M.gguf",
-      "parameters": {
-        "num_ctx": 16384,
-        "num_gpu": 99,
-        "num_thread": 8,
-        "temperature": 0.7,
-        "top_k": 40,
-        "top_p": 0.95,
-        "repeat_penalty": 1.1
-      },
-      "stop_tokens": [
-        "<|im_end|>",
-        "<|endoftext|>"
-      ],
-      "template_format": "ChatML",
-      "quantization": "Q4_K_M",
-      "size_gb": 4,
-      "vram_required_gb": 5,
-      "capabilities": {
-        "tools": true,
-        "reasoning": true,
-        "autonomous": true,
-        "code_generation": true,
-        "code_refactoring": true,
-        "bug_detection": true,
-        "debugging": true,
-        "code_explanation": true,
-        "documentation": true,
-        "architecture_design": false,
-        "performance_optimization": true,
-        "security_analysis": true,
-        "test_generation": true,
-        "api_guidance": true,
-        "cli_assistance": true,
-        "git_operations": true,
-        "file_operations": true,
-        "web_search": false
-      },
-      "best_for": [
-        "Fast code completion",
-        "Lightweight coding assistance",
-        "Quick code suggestions",
-        "Script development"
-      ],
-      "hardware_requirements": {
-        "gpu": "AMD Radeon RX 7900 XTX or equivalent",
-        "vram_gb": 8,
-        "recommended": false
-      }
-    },
-    {
-      "id": "pocket-coder",
-      "name": "Pocket Coder",
-      "description": "The tiny but mighty 0.8B code assistant - Ultra-lightweight reasoning and quick code suggestions",
-      "modelfile": "Modelfile.qwen3-zero-coder-0.8b",
-      "source": "hf.co/DavidAU/Qwen3-Zero-Coder-Reasoning-0.8B-NEO-EX-GGUF:Qwen3-Zero-Coder-Reasoning-0.8B-NEO-EX-Q6_K.gguf",
-      "parameters": {
-        "num_ctx": 16384,
-        "num_gpu": 99,
-        "num_thread": 8,
-        "temperature": 0.7,
-        "top_k": 40,
-        "top_p": 0.95,
-        "repeat_penalty": 1.1
-      },
-      "stop_tokens": [
-        "<|im_end|>",
-        "<|endoftext|>"
-      ],
-      "template_format": "ChatML",
-      "quantization": "Q6_K",
-      "size_gb": 0.7,
-      "vram_required_gb": 1.5,
-      "capabilities": {
-        "tools": true,
-        "reasoning": true,
-        "autonomous": true,
-        "code_generation": true,
-        "code_refactoring": false,
-        "bug_detection": true,
-        "debugging": true,
-        "code_explanation": true,
-        "documentation": false,
-        "architecture_design": false,
-        "performance_optimization": false,
-        "security_analysis": false,
-        "test_generation": false,
-        "api_guidance": true,
-        "cli_assistance": true,
-        "git_operations": true,
-        "file_operations": true,
-        "web_search": false
-      },
-      "best_for": [
-        "Ultra-lightweight reasoning",
-        "Quick code suggestions",
-        "Simple completions",
-        "Fast responses"
-      ],
-      "hardware_requirements": {
-        "gpu": "Any GPU with 2GB+ VRAM",
-        "vram_gb": 2,
-        "recommended": false
-      }
-    }
-  ],
-  "tool_configuration": {
-    "enabled": true,
-    "available_tools": [
-      "file_read",
-      "file_write",
-      "file_list",
-      "directory_create",
-      "code_execute",
-      "git_status",
-      "git_commit",
-      "git_push",
-      "git_pull",
-      "git_diff",
-      "terminal_execute",
-      "package_install",
-      "dependency_check",
-      "syntax_check",
-      "linter_run",
-      "formatter_run",
-      "test_run",
-      "build_project",
-      "debug_trace"
-    ],
-    "tool_restrictions": {
-      "file_operations": {
-        "max_file_size_mb": 10,
-        "allowed_extensions": ["*"],
-        "forbidden_paths": ["/etc", "/sys", "/proc"]
-      },
-      "code_execution": {
-        "timeout_seconds": 300,
-        "sandbox_enabled": true
-      }
-    }
+  "permission": {
+    "lsp": "allow",
+    "bash": "allow",
+    "grep": "allow",
+    "curl": "allow",
+    "list": "allow",
+    "read": "allow",
+    "write": "allow",
+    "delete": "allow",
+    "edit": "allow",
+    "skill": "allow",
+    "todowrite": "allow",
+    "todoread": "allow",
+    "webfetch": "allow",
+    "question": "allow",
+    "*": "allow"
   },
-  "reasoning_configuration": {
-    "enabled": true,
-    "chain_of_thought": true,
-    "step_by_step_explanation": true,
-    "alternative_solutions": true,
-    "error_analysis": true,
-    "edge_case_consideration": true
-  },
-  "autonomy_configuration": {
-    "enabled": true,
-    "decision_making": {
-      "enabled": true,
-      "confidence_threshold": 0.7
-    },
-    "planning": {
-      "enabled": true,
-      "multi_step_tasks": true,
-      "task_decomposition": true
-    },
-    "execution": {
-      "auto_execute_code": false,
-      "auto_commit_changes": false,
-      "require_confirmation": true
-    },
-    "learning": {
-      "context_retention": true,
-      "pattern_recognition": true,
-      "best_practices_adherence": true
-    }
-  },
-  "global_settings": {
-    "default_model": "code-wizard-3000",
-    "fallback_model": "code-buddy",
-    "context_window": 16384,
-    "max_response_tokens": 4096,
-    "streaming": true,
-    "logging": {
-      "enabled": true,
-      "level": "info",
-      "path": "./logs/opencode.log"
-    },
-    "performance": {
-      "cache_enabled": true,
-      "parallel_requests": false,
-      "batch_processing": false
-    }
-  },
-  "ui_configuration": {
-    "theme": "dark",
-    "syntax_highlighting": true,
-    "code_folding": true,
-    "line_numbers": true,
-    "auto_completion": true,
-    "inline_suggestions": true
-  },
-  "integration": {
+  "provider": {
     "ollama": {
-      "enabled": true,
-      "api_url": "http://localhost:11434",
-      "timeout_seconds": 600
-    },
-    "git": {
-      "enabled": true,
-      "auto_stage": false,
-      "commit_template": "feat: {description}"
-    },
-    "editor": {
-      "vscode": true,
-      "vim": true,
-      "emacs": false
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "test_model:latest": {
+          "name": "test_model:latest",
+          "tools": true,
+          "reasoning": true
+        },
+        "qwen3:8b": {
+          "name": "qwen3:8b",
+          "tools": true,
+          "reasoning": true
+        },
+        "deepseek-coder:6.7b": {
+          "name": "deepseek-coder:6.7b",
+          "tools": true,
+          "reasoning": true
+        },
+        "code-wizard-3000:latest": {
+          "name": "code-wizard-3000:latest",
+          "tools": true
+        },
+        "captain-code:latest": {
+          "name": "captain-code:latest",
+          "tools": true
+        },
+        "dev-ninja:latest": {
+          "name": "dev-ninja:latest",
+          "tools": true
+        },
+        "code-maestro:latest": {
+          "name": "code-maestro:latest",
+          "tools": true,
+          "reasoning": true
+        },
+        "code-buddy:latest": {
+          "name": "code-buddy:latest",
+          "tools": true,
+          "reasoning": true
+        },
+        "pocket-coder:latest": {
+          "name": "pocket-coder:latest",
+          "tools": true
+        }
+      }
     }
-  },
-  "security": {
-    "code_scanning": true,
-    "vulnerability_detection": true,
-    "secrets_detection": true,
-    "dependency_audit": true,
-    "safe_code_practices": true
-  },
-  "metadata": {
-    "created": "2026-01-21",
-    "author": "OpenCode Community",
-    "repository": "https://github.com/manoelhc/opencode-modelfiles",
-    "license": "See LICENSE file",
-    "documentation": "https://github.com/manoelhc/opencode-modelfiles/blob/main/README.md"
   }
 }
+

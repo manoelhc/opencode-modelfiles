@@ -13,7 +13,7 @@ You MUST follow these steps in order when adding a new model to this repository:
 
 ### 1. Create the Modelfile
 
-**File naming**: `Modelfile.<model-identifier>` (use lowercase with hyphens)
+**File naming**: `models/Modelfile.<model-identifier>` (use lowercase with hyphens)
 
 **Required structure**:
 ```
@@ -78,7 +78,7 @@ Add model creation entry maintaining size order (largest to smallest):
 
 ```bash
 # Create <Model Name> - <Brief description>
-create_model "Modelfile.<model-identifier>" \
+create_model "models/Modelfile.<model-identifier>" \
     "<fun-creative-name>" \
     "<Engaging description>"
 ```
@@ -104,7 +104,7 @@ Add complete model entry to `models` array:
   "id": "<fun-name>",
   "name": "<Display Name>",
   "description": "<Full description with use cases>",
-  "modelfile": "Modelfile.<model-identifier>",
+  "modelfile": "models/Modelfile.<model-identifier>",
   "source": "<complete-model-path>",
   "parameters": {
     "num_ctx": 16384,
@@ -164,7 +164,7 @@ Add complete model entry to `models` array:
 Add to "Available Models" section:
 ```markdown
 ### <Number>. <Model Name>
-- **File**: `Modelfile.<model-identifier>`
+- **File**: `models/Modelfile.<model-identifier>`
 - **Model**: <source-path> (<quantization>)
 - **Best for**: <primary-use-cases>
 ```
@@ -294,10 +294,10 @@ Stop tokens: `</s>`, `[/INST]`
 ## Examples
 
 See existing models:
-- `Modelfile.qwen3-coder-30b` - Large ChatML model
-- `Modelfile.devstral-small-24b` - Large Instruct model
-- `Modelfile.qwen2.5-coder-7b` - Medium model
-- `Modelfile.qwen3-zero-coder-0.8b` - Ultra-light model
+- `models/Modelfile.code-wizard-3000` - Large ChatML model
+- `models/Modelfile.dev-ninja` - Large Instruct model
+- `models/Modelfile.code-buddy` - Medium model
+- `models/Modelfile.pocket-coder` - Ultra-light model
 
 ## Quick Reference Checklist
 
