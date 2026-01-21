@@ -7,7 +7,7 @@ Modelfiles compatible with Opencode to run on Ollama (locally)
 This repository contains optimized Ollama Modelfiles for various AI coding models, configured for use with opencode and optimized for AMD Radeon RX 7900 XTX (20 GB VRAM).
 
 All models feature:
-- **Tool Support**: Context window of 16384 tokens (`num_ctx 16384`) for OpenCode tool calling
+- **Tool Support**: Context window of 16384 tokens (`num_ctx 40960`) for OpenCode tool calling
 - **GPU Optimization**: Configured for AMD Radeon RX 7900 XTX with maximum utilization
 - **OpenCode Integration**: System prompts optimized for coding assistance with tool capabilities
 - **GGUF Format**: Quantized models (Q4_K_M/Q6_K) for efficient local inference
@@ -156,7 +156,7 @@ After creating a model, you can verify it has tool capabilities:
 ollama show code-wizard-3000
 
 # Look for:
-# - context length: should show 16384
+# - context length: should show 40960
 # - Capabilities: should list "tools"
 ```
 
@@ -227,7 +227,7 @@ Error: registry.ollama.ai/library/code-buddy:latest does not support tools
 This is a known OpenCode limitation where custom Ollama provider configurations may not be recognized properly in OpenCode 1.1.28. Our investigation shows:
 
 ✅ **What IS working:**
-- Models are created with correct `num_ctx 16384`
+- Models are created with correct `num_ctx 40960`
 - System prompts include tool capabilities
 - Modelfiles are properly configured
 - AI SDK `@ai-sdk/openai-compatible` can be installed
@@ -257,7 +257,7 @@ We're tracking this issue and will update the repository when a solution is foun
 ## Configuration Details
 
 Each Modelfile includes:
-- `num_ctx 16384`: Extended context window for handling larger codebases
+- `num_ctx 40960`: Extended context window for handling larger codebases
 - `num_gpu 99`: Maximum GPU utilization for AMD hardware
 - `num_thread 8`: Optimized threading for modern CPUs
 - `temperature 0.7`: Balanced creativity vs. determinism
