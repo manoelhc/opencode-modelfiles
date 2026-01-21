@@ -25,21 +25,6 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "test_model:latest": {
-          "name": "test_model:latest",
-          "tools": true,
-          "reasoning": true
-        },
-        "qwen3:8b": {
-          "name": "qwen3:8b",
-          "tools": true,
-          "reasoning": true
-        },
-        "deepseek-coder:6.7b": {
-          "name": "deepseek-coder:6.7b",
-          "tools": true,
-          "reasoning": true
-        },
         "code-wizard-3000:latest": {
           "name": "code-wizard-3000:latest",
           "tools": true
