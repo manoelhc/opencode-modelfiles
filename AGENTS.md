@@ -25,7 +25,7 @@ Create a new Modelfile named `Modelfile.<model-identifier>` in the `models/` dir
 FROM <model-source>
 
 # Context window and performance parameters
-PARAMETER num_ctx 16384
+PARAMETER num_ctx 40960
 PARAMETER num_gpu 99
 PARAMETER num_thread 8
 PARAMETER temperature 0.7
@@ -70,7 +70,7 @@ TEMPLATE """<appropriate-template-format>"""
 
 - **Maximum VRAM**: Model must fit within 20 GB total VRAM budget (includes model + context)
 - **Recommended quantization**: Q4_K_M or Q6_K for balance between quality and size
-- **Context window**: Use `num_ctx 16384` (standard across all models for tool support)
+- **Context window**: Use `num_ctx 40960` (standard across all models for tool support)
 - **GPU utilization**: Set `num_gpu 99` for maximum GPU usage
 - **Threading**: Set `num_thread 8` for optimal CPU threading
 
@@ -112,7 +112,7 @@ Include appropriate stop tokens based on template format:
 - Instruct: `[INST]`, `[/INST]`, `</s>`
 - Llama: `</s>`, `[/INST]`
 
-### 2. Update build-models.sh
+### 2. Update scripts/build-models.sh
 
 Add a new entry to the build script:
 
@@ -147,7 +147,7 @@ Add a comprehensive model entry to the `models` array in `opencode.json`:
   "modelfile": "models/Modelfile.<model-identifier>",
   "source": "<full-model-source-path>",
   "parameters": {
-    "num_ctx": 16384,
+    "num_ctx": 40960,
     "num_gpu": 99,
     "num_thread": 8,
     "temperature": 0.7,
@@ -252,8 +252,8 @@ Before submitting changes, verify:
 - [ ] System prompt includes tool capabilities mention
 - [ ] Appropriate template format selected
 - [ ] Correct stop tokens specified
-- [ ] build-models.sh updated with new model entry
-- [ ] build-models.sh summary section updated
+- [ ] scripts/build-models.sh updated with new model entry
+- [ ] scripts/build-models.sh summary section updated
 - [ ] opencode.json updated with complete model entry
 - [ ] All required capabilities set to `true`
 - [ ] VRAM requirement does not exceed 20 GB
@@ -261,7 +261,7 @@ Before submitting changes, verify:
 - [ ] README.md "Available Models" section updated
 - [ ] README.md example count/statistics updated
 - [ ] JSON syntax validated (`python3 -m json.tool opencode.json`)
-- [ ] Build script syntax validated (`bash -n build-models.sh`)
+- [ ] Build script syntax validated (`bash -n scripts/build-models.sh`)
 
 ### 6. Testing
 
@@ -274,7 +274,7 @@ After making changes, test:
 
 2. **Shell Script Validation**:
    ```bash
-   bash -n build-models.sh && echo "✅ Valid" || echo "❌ Invalid"
+   bash -n scripts/build-models.sh && echo "✅ Valid" || echo "❌ Invalid"
    ```
 
 3. **Model Creation** (if Ollama is available):
@@ -289,7 +289,7 @@ After making changes, test:
 3. **Missing Capabilities**: Ensure `tools`, `reasoning`, and `autonomous` are always set to `true`
 4. **Wrong Template**: Using incorrect template format will cause model failures
 5. **Missing Stop Tokens**: Models without proper stop tokens may not stop generating
-6. **Incomplete Updates**: Forgetting to update all four files (Modelfile, build-models.sh, opencode.json, README.md)
+6. **Incomplete Updates**: Forgetting to update all four files (Modelfile, scripts/build-models.sh, opencode.json, README.md)
 
 ## Model Size Guidelines
 
@@ -313,7 +313,9 @@ After making changes, test:
 
 See existing models for reference:
 - `models/Modelfile.code-wizard-3000` - Large model with ChatML template
+- `models/Modelfile.captain-code` - Large model with ChatML template
 - `models/Modelfile.dev-ninja` - Large model with Instruct template
+- `models/Modelfile.code-maestro` - Medium model with ChatML template
 - `models/Modelfile.code-buddy` - Medium model example
 - `models/Modelfile.pocket-coder` - Ultra-lightweight model example
 
