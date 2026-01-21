@@ -1,6 +1,7 @@
 # Modelfile for Qwen3 Coder 30B A3B Instruct
 # Optimized for opencode with AMD Radeon RX 7900 XTX (20 GB)
 
+# Using Q4_K_M quantization for optimal balance between quality and VRAM usage
 FROM hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M
 
 # Context window and performance parameters

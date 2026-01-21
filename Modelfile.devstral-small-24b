@@ -1,6 +1,7 @@
 # Modelfile for Devstral Small 24B Instruct
 # Optimized for opencode with AMD Radeon RX 7900 XTX (20 GB)
 
+# Using Q4_K_M quantization for optimal balance between quality and VRAM usage
 FROM hf.co/unsloth/Devstral-Small-2-24B-Instruct-2512-GGUF:Q4_K_M
 
 # Context window and performance parameters
@@ -42,6 +43,7 @@ When responding:
 
 You have access to tools for file operations, code execution, web search, and more. Use them effectively to provide comprehensive assistance."""
 
+# Devstral uses Instruct format with [INST]/[/INST] tags instead of ChatML format
 TEMPLATE """[INST] {{ .System }}
 
 {{ .Prompt }} [/INST]

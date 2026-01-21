@@ -84,6 +84,18 @@ Each Modelfile includes:
 - Model-specific stop tokens for proper inference
 - Comprehensive system prompts for coding assistance
 
+### Template Formats
+
+Different models use different prompt templates:
+
+- **ChatML Format** (Qwen models, OpenAI GPT OSS): Uses `<|im_start|>` and `<|im_end|>` tags
+  - Used by: Qwen3 Coder 30B, Qwen2.5 Coder 7B, Qwen3 Zero Coder 0.8B, OpenAI GPT OSS 20B
+
+- **Instruct Format** (Devstral): Uses `[INST]` and `[/INST]` tags
+  - Used by: Devstral Small 24B
+
+These templates are optimized for each model's training format to ensure proper response generation.
+
 ## Capabilities
 
 All models are configured with system prompts that enable:
