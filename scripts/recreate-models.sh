@@ -5,6 +5,8 @@
 
 set -e
 
+cd models
+
 echo "🔧 Model Recreation Script - Tool Support Fix 🔧"
 echo "================================================"
 echo ""

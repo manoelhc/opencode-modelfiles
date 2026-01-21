@@ -5,6 +5,8 @@
 
 set -e
 
+cd models
+
 echo "🎨 OpenCode Modelfile Builder 🎨"
 echo "================================="
 echo ""
