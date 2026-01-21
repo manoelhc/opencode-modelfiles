@@ -66,9 +66,9 @@ TEMPLATE """<appropriate-template-format>"""
 
 #### Hardware Compatibility Requirements
 
-**CRITICAL**: All models must be compatible with AMD Radeon RX 7900 XTX (20 GB VRAM)
+**CRITICAL**: All models must be compatible with AMD Radeon RX 7900 XTX (20 GB total VRAM capacity)
 
-- **Maximum VRAM**: Model must fit within 20 GB VRAM budget
+- **Maximum VRAM**: Model must fit within 20 GB total VRAM budget (includes model + context)
 - **Recommended quantization**: Q4_K_M or Q6_K for balance between quality and size
 - **Context window**: Use `num_ctx 16384` (standard across all models)
 - **GPU utilization**: Set `num_gpu 99` for maximum GPU usage
@@ -269,7 +269,7 @@ After making changes, test:
 
 1. **JSON Validation**:
    ```bash
-   python3 -m json.tool opencode.json > /dev/null && echo "✅ Valid" || echo "❌ Invalid"
+   python3 -m json.tool opencode.json >/dev/null 2>&1 && echo "✅ Valid" || (echo "❌ Invalid"; python3 -m json.tool opencode.json)
    ```
 
 2. **Shell Script Validation**:

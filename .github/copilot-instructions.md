@@ -38,28 +38,38 @@ TEMPLATE """<model-specific-template>"""
 ```
 
 **Hardware constraints**:
-- Model + context must fit in ≤20 GB VRAM
+- Model + context must fit in ≤20 GB total VRAM capacity
 - Prefer Q4_K_M quantization (balance quality/size)
 - Use Q6_K only for ultra-small models (<2B)
-- Calculate VRAM: model size + (context tokens × 2 bytes × layers)
+- VRAM estimation: model GGUF size + 2-4 GB context overhead (varies by architecture)
 
 **System prompt requirements**:
 - MUST mention tool capabilities
 - MUST include standard capability list (see existing Modelfiles)
 - Keep consistent with other models
 
-**Template format selection**:
+**Template format selection** (note: actual templates use literal newlines, not \n):
 - **ChatML**: Qwen, OpenAI-style models
   ```
-  <|im_start|>system\n{{ .System }}<|im_end|>\n<|im_start|>user\n{{ .Prompt }}<|im_end|>\n<|im_start|>assistant\n
+  <|im_start|>system
+  {{ .System }}<|im_end|>
+  <|im_start|>user
+  {{ .Prompt }}<|im_end|>
+  <|im_start|>assistant
   ```
 - **Instruct**: Mistral, Devstral models
   ```
-  [INST] {{ .System }}\n\n{{ .Prompt }} [/INST]
+  [INST] {{ .System }}
+
+  {{ .Prompt }} [/INST]
   ```
 - **Llama**: Llama models
   ```
-  <s>[INST] <<SYS>>\n{{ .System }}\n<</SYS>>\n\n{{ .Prompt }} [/INST]
+  <s>[INST] <<SYS>>
+  {{ .System }}
+  <</SYS>>
+
+  {{ .Prompt }} [/INST]
   ```
 
 ### 2. Update build-models.sh
@@ -170,7 +180,7 @@ Before committing, ALWAYS:
 
 1. **Validate JSON**:
    ```bash
-   python3 -m json.tool opencode.json > /dev/null
+   python3 -m json.tool opencode.json >/dev/null 2>&1 && echo "✅ Valid" || python3 -m json.tool opencode.json
    ```
 
 2. **Validate shell script**:
