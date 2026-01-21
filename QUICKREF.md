@@ -3,19 +3,19 @@
 ## Scripts
 
 ### `build-models.sh`
-Creates all 5 models with fun, memorable names.
+Creates all 6 models with fun, memorable names.
 
 ```bash
 ./build-models.sh
 ```
 
 **Creates:**
-- `code-wizard-3000` (30B) - Large-scale projects
+- `code-wizard-3000` (20B) - Large-scale projects
 - `captain-code` (20B) - General purpose
-- `dev-ninja` (24B) - Balanced development
-- `code-maestro` (30B MoE) - Versatile coding
+- `dev-ninja` (8B) - Balanced development
+- `code-maestro` (30B) - Versatile coding
 - `code-buddy` (7B) - Fast prototyping
-- `pocket-coder` (0.8B) - Lightweight tasks
+- `pocket-coder` (8B) - Lightweight tasks
 
 ### `test-models.sh`
 Comprehensive test suite to verify your setup.
@@ -47,7 +47,7 @@ Installs AI SDK and creates OpenCode configuration.
 **Does:**
 - Installs `@ai-sdk/openai-compatible`
 - Creates `~/.config/opencode/providers/opencode.json`
-- Configures all 5 models with tool support
+- Configures all 6 models with tool support
 
 **Note:** Due to OpenCode limitations, the configuration may not be recognized.
 
@@ -139,7 +139,7 @@ ollama list | grep code-buddy
 # Check current value
 ollama show code-buddy --modelfile | grep num_ctx
 
-# Should show: PARAMETER num_ctx 16384
+# Should show: PARAMETER num_ctx 40960
 
 # If different, recreate model
 ollama rm code-buddy
@@ -161,11 +161,12 @@ curl http://localhost:11434/api/version
 ```
 opencode-modelfiles/
 ├── models/
-│   ├── Modelfile.code-wizard-3000     # 30B parameter model
-│   ├── Modelfile.captain-code         # 20B parameter model  
-│   ├── Modelfile.dev-ninja            # 24B parameter model
+│   ├── Modelfile.code-wizard-3000     # 20B parameter model
+│   ├── Modelfile.captain-code         # 20B parameter model
+│   ├── Modelfile.dev-ninja            # 8B parameter model
+│   ├── Modelfile.code-maestro         # 30B parameter model
 │   ├── Modelfile.code-buddy           # 7B parameter model
-│   └── Modelfile.pocket-coder         # 0.8B parameter model
+│   └── Modelfile.pocket-coder         # 8B parameter model
 ├── scripts/
 │   ├── build-models.sh                # Create all models
 │   ├── test-models.sh                 # Test suite
@@ -201,12 +202,12 @@ opencode-modelfiles/
 
 | Model | Parameters | Quantization | VRAM | Context | Speed |
 |-------|-----------|--------------|------|---------|-------|
-| code-wizard-3000 | 30B | Q4_K_M | 18GB | 16K | Slow |
-| captain-code | 20B | IQ4_NL | 13GB | 16K | Medium |
-| dev-ninja | 24B | Q4_K_M | 16GB | 16K | Medium |
-| code-maestro | 30.5B MoE | Q4_K_M | 20GB | 16K | Medium |
-| code-buddy | 7B | Q4_K_M | 6GB | 16K | Fast |
-| pocket-coder | 0.8B | BF16 | 3GB | 16K | Very Fast |
+| code-wizard-3000 | 20B | Q4_K_M | 12GB | 40K | Medium |
+| captain-code | 20B | IQ4_NL | 13GB | 40K | Medium |
+| dev-ninja | 8B | Q4_K_M | 6GB | 40K | Fast |
+| code-maestro | 30B | Q4_K_M | 18GB | 40K | Slow |
+| code-buddy | 7B | Q4_K_M | 6GB | 40K | Fast |
+| pocket-coder | 8B | BF16 | 6GB | 40K | Fast |
 
 All models support:
 - Tool calling (via API)

@@ -23,7 +23,7 @@ You MUST follow these steps in order when adding a new model to this repository:
 FROM <model-source>
 
 # REQUIRED: Standard parameters for all models
-PARAMETER num_ctx 16384        # Fixed: 16K context window
+PARAMETER num_ctx 40960        # Fixed: 40K context window
 PARAMETER num_gpu 99           # Fixed: Maximum GPU utilization
 PARAMETER num_thread 8         # Fixed: 8 threads
 PARAMETER temperature 0.7      # Fixed: Balanced creativity
@@ -107,7 +107,7 @@ Add complete model entry to `models` array:
   "modelfile": "models/Modelfile.<model-identifier>",
   "source": "<complete-model-path>",
   "parameters": {
-    "num_ctx": 16384,
+    "num_ctx": 40960,
     "num_gpu": 99,
     "num_thread": 8,
     "temperature": 0.7,
@@ -196,7 +196,7 @@ Before committing, ALWAYS:
 
 4. **Verify parameters**:
    - All standard parameters present
-   - num_ctx = 16384
+   - num_ctx = 40960
    - num_gpu = 99
    - num_thread = 8
    - temperature = 0.7
@@ -242,7 +242,7 @@ Before committing, ALWAYS:
 
 **VRAM calculation**:
 - Base model size (from GGUF file)
-- Context overhead: ~2-4 GB for 16K context
+- Context overhead: ~2-4 GB for 40K context
 - Safety margin: 10-15% headroom
 - Total must be ≤20 GB
 
@@ -252,7 +252,7 @@ All models MUST:
 - Support tool calling (mentioned in system prompt)
 - Enable reasoning capabilities
 - Allow autonomous operation
-- Work with 16K context window
+- Work with 40K context window
 - Use consistent temperature/sampling
 
 System prompt MUST include:

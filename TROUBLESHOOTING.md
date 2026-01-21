@@ -15,7 +15,7 @@ We've conducted extensive investigation into this issue. Here's what we found:
 ### What Works ✅
 
 1. **Models are properly configured**
-   - All Modelfiles include `num_ctx 16384` 
+   - All Modelfiles include `num_ctx 40960` 
    - System prompts mention tool capabilities
    - Stop tokens are correct
    - Template formats are appropriate
@@ -75,12 +75,12 @@ File: `~/.config/opencode/providers/opencode.json`
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "code-buddy:latest": {
-          "name": "Code Buddy - Qwen2.5 7B",
-          "tools": true,
-          "reasoning": true,
-          "options": { "num_ctx": 16384 }
-        }
+         "code-buddy:latest": {
+           "name": "Code Buddy - Qwen2.5 7B",
+           "tools": true,
+           "reasoning": true,
+           "options": { "num_ctx": 40960 }
+         }
       }
     }
   }
@@ -143,7 +143,7 @@ This is a known issue in the OpenCode community:
 
 ## What We Know For Sure
 
-1. Our Modelfiles are correct (num_ctx 16384 ✓)
+1. Our Modelfiles are correct (num_ctx 40960 ✓)
 2. Our models have proper tool-aware system prompts ✓
 3. Ollama serves models via OpenAI-compatible API ✓
 4. The AI SDK package can load models from Ollama ✓

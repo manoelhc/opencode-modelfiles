@@ -7,41 +7,41 @@ Modelfiles compatible with Opencode to run on Ollama (locally)
 This repository contains optimized Ollama Modelfiles for various AI coding models, configured for use with opencode and optimized for AMD Radeon RX 7900 XTX (20 GB VRAM).
 
 All models feature:
-- **Tool Support**: Context window of 16384 tokens (`num_ctx 16384`) for OpenCode tool calling
+- **Tool Support**: Context window of 40960 tokens (`num_ctx 40960`) for OpenCode tool calling
 - **GPU Optimization**: Configured for AMD Radeon RX 7900 XTX with maximum utilization
 - **OpenCode Integration**: System prompts optimized for coding assistance with tool capabilities
 - **GGUF Format**: Quantized models (Q4_K_M/Q6_K) for efficient local inference
 
 ## Available Models
 
-### 1. Qwen3 Coder 30B A3B Instruct
+### 1. GPT-OSS 20B
 - **File**: `models/Modelfile.code-wizard-3000`
-- **Model**: unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF (Q4_K_M)
+- **Model**: gpt-oss:20b
 - **Best for**: Large-scale code generation and complex refactoring tasks
 
-### 2. OpenAI GPT OSS 20B Abliterated Uncensored
+### 2. GPT-OSS 20B
 - **File**: `models/Modelfile.captain-code`
-- **Model**: DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf (Q4_K_M)
+- **Model**: gpt-oss:20b
 - **Best for**: General-purpose coding with unrestricted capabilities
 
-### 3. Devstral Small 24B Instruct
+### 3. Ministral 3 8B
 - **File**: `models/Modelfile.dev-ninja`
-- **Model**: unsloth/Devstral-Small-2-24B-Instruct-2512-GGUF (Q4_K_M)
+- **Model**: ministral-3:8b
 - **Best for**: Balanced performance and capability for development tasks
 
-### 4. Qwen3 Coder
+### 4. Nemotron 3 Nano 30B
 - **File**: `models/Modelfile.code-maestro`
-- **Model**: qwen3-coder:latest (Q4_K_M)
+- **Model**: nemotron-3-nano:30b
 - **Best for**: General-purpose coding tasks and standard development workflows
 
 ### 5. Qwen2.5 Coder 7B 3x Instruct TIES
 - **File**: `models/Modelfile.code-buddy`
-- **Model**: QuantFactory/Qwen2.5-Coder-7B-3x-Instruct-TIES-v1.2-GGUF (Q4_K_M)
+- **Model**: hf.co/QuantFactory/Qwen2.5-Coder-7B-3x-Instruct-TIES-v1.2-GGUF:Qwen2.5-Coder-7B-3x-Instruct-TIES-v1.2.Q4_K_M.gguf
 - **Best for**: Fast code completion and lightweight coding assistance
 
-### 6. Qwen3 Zero Coder Reasoning 0.8B
+### 6. Qwen3 8B
 - **File**: `models/Modelfile.pocket-coder`
-- **Model**: DavidAU/Qwen3-Zero-Coder-Reasoning-0.8B-NEO-EX-GGUF (Q6_K)
+- **Model**: qwen3:8b
 - **Best for**: Ultra-lightweight reasoning and quick code suggestions
 
 ## Installation
@@ -65,16 +65,16 @@ cd opencode-modelfiles
 ```
 
 This will create all 6 models with creative names:
-- `code-wizard-3000` - The mighty 30B coding sorcerer
-- `captain-code` - The fearless 20B coding superhero
-- `dev-ninja` - The stealthy 24B development master
-- `code-maestro` - The versatile coding maestro
-- `code-buddy` - Your friendly 7B coding companion
-- `pocket-coder` - The tiny but mighty 0.8B code assistant
+- `code-wizard-3000` - The mighty GPT-OSS 20B coding sorcerer
+- `captain-code` - The fearless GPT-OSS 20B coding superhero
+- `dev-ninja` - The stealthy Ministral 3 8B development master
+- `code-maestro` - The versatile Nemotron 3 Nano 30B coding maestro
+- `code-buddy` - Your friendly Qwen2.5 Coder 7B coding companion
+- `pocket-coder` - The tiny but mighty Qwen3 8B code assistant
 
 3. **Manual Creation** - Or create models individually:
 ```bash
-# Example: Create Qwen3 Coder 30B model
+# Example: Create GPT-OSS 20B model
 ollama create code-wizard-3000 -f models/Modelfile.code-wizard-3000
 
 # Example: Create Qwen2.5 Coder 7B model
@@ -103,7 +103,7 @@ This will check:
 ollama run code-wizard-3000
 
 # Or specify another model
-ollama run captain-code
+ollama run code-buddy
 ```
 
 6. Use with opencode or your preferred interface:
@@ -123,7 +123,7 @@ Before using the models with OpenCode, run the test suite:
 The test script will verify:
 - Ollama service is running
 - All models are created and available
-- Models have correct configurations (num_ctx 16384)
+- Models have correct configurations (num_ctx 40960)
 - OpenCode is installed and configured
 - AI SDK is installed
 - Models can communicate via Ollama's API
@@ -137,15 +137,15 @@ If other tests fail, the script provides specific recommendations for fixing iss
 
 ## Tool Support for OpenCode
 
-**CRITICAL**: For proper tool support in OpenCode, models must be created with the correct context window setting. The Modelfiles in this repository are already configured with `num_ctx 16384`, which is the recommended value for reliable tool calling.
+**CRITICAL**: For proper tool support in OpenCode, models must be created with the correct context window setting. The Modelfiles in this repository are already configured with `num_ctx 40960`, which is the recommended value for reliable tool calling.
 
 ### Why 16384 Context?
 
 Based on extensive community testing ([OpenCode Issue #1068](https://github.com/anomalyco/opencode/issues/1068)):
 - Ollama models default to 4096 context when first loaded, which is **too small** for tool support
-- A minimum of **16384 tokens** is required for reliable tool calling
+- A minimum of **40960 tokens** is required for reliable tool calling
 - Values like 65536 can work but may cause instability and higher VRAM usage
-- **16384 is the sweet spot** - sufficient for tools while fitting in VRAM budget
+- **40960 is the sweet spot** - sufficient for tools while fitting in VRAM budget
 
 ### Verifying Tool Support
 
@@ -156,7 +156,7 @@ After creating a model, you can verify it has tool capabilities:
 ollama show code-wizard-3000
 
 # Look for:
-# - context length: should show 16384
+# - context length: should show 40960
 # - Capabilities: should list "tools"
 ```
 
@@ -174,31 +174,36 @@ Configure OpenCode to use your models by editing `~/.config/opencode/providers/o
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "code-wizard-3000": {
-          "name": "Code Wizard 3000 - Qwen3 30B",
-          "tools": true,
-          "reasoning": true
-        },
-        "captain-code": {
-          "name": "Captain Code - OpenAI GPT OSS 20B",
-          "tools": true,
-          "reasoning": true
-        },
-        "dev-ninja": {
-          "name": "Dev Ninja - Devstral 24B",
-          "tools": true,
-          "reasoning": true
-        },
-        "code-buddy": {
-          "name": "Code Buddy - Qwen2.5 7B",
-          "tools": true,
-          "reasoning": true
-        },
-        "pocket-coder": {
-          "name": "Pocket Coder - Qwen3 0.8B",
-          "tools": true,
-          "reasoning": true
-        }
+         "code-wizard-3000": {
+           "name": "Code Wizard 3000 - GPT-OSS 20B",
+           "tools": true,
+           "reasoning": true
+         },
+         "captain-code": {
+           "name": "Captain Code - GPT-OSS 20B",
+           "tools": true,
+           "reasoning": true
+         },
+         "dev-ninja": {
+           "name": "Dev Ninja - Ministral 3 8B",
+           "tools": true,
+           "reasoning": true
+         },
+         "code-maestro": {
+           "name": "Code Maestro - Nemotron 3 Nano 30B",
+           "tools": true,
+           "reasoning": true
+         },
+         "code-buddy": {
+           "name": "Code Buddy - Qwen2.5 Coder 7B",
+           "tools": true,
+           "reasoning": true
+         },
+         "pocket-coder": {
+           "name": "Pocket Coder - Qwen3 8B",
+           "tools": true,
+           "reasoning": true
+         }
       }
     }
   }
@@ -227,7 +232,7 @@ Error: registry.ollama.ai/library/code-buddy:latest does not support tools
 This is a known OpenCode limitation where custom Ollama provider configurations may not be recognized properly in OpenCode 1.1.28. Our investigation shows:
 
 ✅ **What IS working:**
-- Models are created with correct `num_ctx 16384`
+- Models are created with correct `num_ctx 40960`
 - System prompts include tool capabilities
 - Modelfiles are properly configured
 - AI SDK `@ai-sdk/openai-compatible` can be installed
@@ -257,7 +262,7 @@ We're tracking this issue and will update the repository when a solution is foun
 ## Configuration Details
 
 Each Modelfile includes:
-- `num_ctx 16384`: Extended context window for handling larger codebases
+- `num_ctx 40960`: Extended context window for handling larger codebases
 - `num_gpu 99`: Maximum GPU utilization for AMD hardware
 - `num_thread 8`: Optimized threading for modern CPUs
 - `temperature 0.7`: Balanced creativity vs. determinism
@@ -299,8 +304,8 @@ The `opencode.json` file provides a comprehensive configuration for all models w
 - **Autonomy**: Decision making, planning, multi-step task execution with safety controls
 
 ### Configuration Highlights
-- **5 Models**: From 0.8B to 30B parameters, optimized for different use cases
-- **Context Window**: 16,384 tokens across all models
+- **6 Models**: From 0.8B to 30B parameters, optimized for different use cases
+- **Context Window**: 40,960 tokens across all models
 - **Hardware Support**: Optimized for AMD Radeon RX 7900 XTX (20GB VRAM)
 - **Security**: Code scanning, vulnerability detection, secrets detection, dependency audit
 - **Integrations**: Ollama API, Git, VSCode, Vim
