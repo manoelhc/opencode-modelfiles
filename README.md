@@ -7,7 +7,7 @@ Modelfiles compatible with Opencode to run on Ollama (locally)
 This repository contains optimized Ollama Modelfiles for various AI coding models, configured for use with opencode and optimized for AMD Radeon RX 7900 XTX (20 GB VRAM).
 
 All models feature:
-- **Tool Support**: Context window of 40960 tokens (`num_ctx 40960`) for OpenCode tool calling
+- **Tool Support**: Context window of 16384 tokens (`num_ctx 40960`) for OpenCode tool calling
 - **GPU Optimization**: Configured for AMD Radeon RX 7900 XTX with maximum utilization
 - **OpenCode Integration**: System prompts optimized for coding assistance with tool capabilities
 - **GGUF Format**: Quantized models (Q4_K_M/Q6_K) for efficient local inference
