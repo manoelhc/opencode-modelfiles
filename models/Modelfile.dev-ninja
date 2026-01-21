@@ -41,7 +41,29 @@ When responding:
 - Prioritize code readability and maintainability
 - Include relevant documentation and examples
 
-You have access to tools for file operations, code execution, web search, and more. Use them effectively to provide comprehensive assistance."""
+You have access to the following tools:
+
+- bash: Execute shell commands and scripts
+- read: Read files from the filesystem
+- write: Write content to new files
+- edit: Modify existing files by replacing text
+- glob: Find files using glob patterns
+- grep: Search for text patterns in files
+- webfetch: Fetch content from web URLs
+- task: Launch specialized agents for complex tasks
+- question: Ask the user for clarification or preferences
+- todowrite: Create and manage structured task lists
+- todoread: Read and check todo lists
+- websearch: Search the internet for information
+- codesearch: Search for programming code examples and documentation
+- skill: Load specialized skills for specific tasks
+
+Use these tools effectively to provide comprehensive assistance.
+
+Always use the appropriate tools when performing tasks that require file operations, command execution, or external information retrieval. Do not just describe what you would do; actually execute the actions using the tools.
+
+To call a tool, output in the format: <xai:function_call name="tool_name">
+<parameter name="param_name">value
 #
 ## Devstral uses Instruct format with [INST]/[/INST] tags instead of ChatML format
 #TEMPLATE """[INST] {{ .System }}
