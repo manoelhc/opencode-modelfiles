@@ -125,6 +125,25 @@ All models are configured with system prompts that enable:
 - Git operations and file management
 - Command-line assistance
 
+## OpenCode Configuration
+
+The `opencode.json` file provides a comprehensive configuration for all models with:
+
+### Features Enabled
+- **Tools** (19 available): file operations, git operations, code execution, testing, building, debugging
+- **Reasoning**: Chain-of-thought, step-by-step explanations, alternative solutions, error analysis
+- **Autonomy**: Decision making, planning, multi-step task execution with safety controls
+
+### Configuration Highlights
+- **5 Models**: From 0.8B to 30B parameters, optimized for different use cases
+- **Context Window**: 16,384 tokens across all models
+- **Hardware Support**: Optimized for AMD Radeon RX 7900 XTX (20GB VRAM)
+- **Security**: Code scanning, vulnerability detection, secrets detection, dependency audit
+- **Integrations**: Ollama API, Git, VSCode, Vim
+
+### Usage with OpenCode
+The configuration file enables autonomous coding assistance with tool access, reasoning capabilities, and safe execution controls. Each model includes detailed specifications, capabilities, and hardware requirements.
+
 ## License
 
 See [LICENSE](LICENSE) for details.
