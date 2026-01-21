@@ -1,7 +1,7 @@
 # Modelfile for OpenAI GPT OSS 20B Abliterated Uncensored
 # Optimized for opencode with AMD Radeon RX 7900 XTX (20 GB)
 
-FROM hf.co/DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf:OpenAi-GPT-oss-20b-abliterated-uncensored-NEO.Q4_K_M.gguf
+FROM hf.co/DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf:OpenAI-20B-NEO-CODE2-Plus-Uncensored-IQ4_NL.gguf
 
 # Context window and performance parameters
 PARAMETER num_ctx 16384
